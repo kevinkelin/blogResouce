@@ -15,7 +15,7 @@ python操作mongo常用的增删改查操作。[Python操作MongoDB看这一篇�
 
 # 忽略大小写查询
 
-可以使用正则(re)来查询
+可以使用正则表达式(re)来查询
 
 ``` python 
 import re
