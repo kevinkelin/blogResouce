@@ -18,6 +18,7 @@ python操作mongo常用的增删改查操作。[Python操作MongoDB看这一篇�
 可以使用正则表达式(re)来查询
 
 ``` python 
+
 import re
 from pymongo import Connection
 
@@ -29,7 +30,8 @@ fileinfos = conn.fileRecode.fileTask.find({'filename':re_name},projection={'_id'
 ```
 
 也可以使用 `$regex` 表达式，上面的代码可以使用下面替换
-``` python 
+``` python
+ 
 fileinfos = conn.fileRecode.fileTask.find({'filename':{'$regex':r"^%s$"%filename,'$options':"i"}},projection={'_id': False})
 
 ```
@@ -48,6 +50,7 @@ fileinfos = conn.fileRecode.fileTask.find({'filename':{'$regex':r"^%s$"%filename
 
 比如有如下格式的数据
 ``` json
+
 /* 1 */
 {
     "_id" : ObjectId("5c24a27ddb1f5a209cf8799a"),
@@ -71,7 +74,8 @@ fileinfos = conn.fileRecode.fileTask.find({'filename':{'$regex':r"^%s$"%filename
 ```
 比如我要查询info下的name为yangyanxing的该如何查询呢？
 使用`.`来连接查询，这里就是`info.name`
-``` python 
+``` python
+ 
 >>> conn.yang.test.find_one({"info.name":"fanjy"})
 {u'info': {u'age': u'20', u'name': u'fanjy'}, u'_id': ObjectId('5c24a2acdb1f5a209cf8799b'), u'id': 1}
 
@@ -83,6 +87,7 @@ fileinfos = conn.fileRecode.fileTask.find({'filename':{'$regex':r"^%s$"%filename
 有时候在插入数据的时候会使用`datetime.datetime.now()` 来插入一个datatime格式的数据，比如要查询某段时间的数据该怎么查询呢？
 可以使用`$gte`(大于等于)与`$lte`(小于等于)来查询，比如说要查询一年以来的数据，可以这样
 ``` python 
+
 import datedate
 from pymongo import Connection
 
@@ -99,13 +104,15 @@ fileinfos = conn.Documents.find(checkCon)
 1. 关系`与` (and)
 其实这个不要特殊的关键词，直接将要查询的内容依次写到查询条件中就是`与`的关系
 ``` python
+
 >>> conn.yang.test.find_one({"info.name":"fanjy","id":1})
 {u'info': {u'age': u'20', u'name': u'fanjy'}, u'_id': ObjectId('5c24a2acdb1f5a209cf8799b'), u'id': 1}
 ```
 
 2. 关系`或` (or) 需要使用`$or`,比如要查询名字叫 yangyanxing 或者 地址在tongzhou的
 
-``` python 
+``` python
+ 
 coon.yang.test.find({"$or":[{"name":"yangyanxing"},{"address":"tongzhou"}]})
 
 ```
@@ -113,11 +120,13 @@ coon.yang.test.find({"$or":[{"name":"yangyanxing"},{"address":"tongzhou"}]})
 
 列表也可以用列表迭代，比如我要找到 taskid 为1,2,4,6,7,9,10,20,34的任务,可以使用
 ``` python 
+
 conn.yang.test.find({'$or':[{"taskid":i} for i in l]})
 ```
 
 3. `$in` 操作
 ``` python 
+
 >>> for i in conn.yang.test.find({"info.name":{"$in":['yangyanxing','fanjy']}}):
 ...     print i
 ...
