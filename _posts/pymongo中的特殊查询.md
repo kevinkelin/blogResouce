@@ -7,7 +7,7 @@ tags: python
 permalink: specialUse-in-pymongo
 
 ---
-python操作mongo常用的增删改查操作 ，[Python操作MongoDB看这一篇就够了](https://juejin.im/post/5addbd0e518825671f2f62ee)
+python操作mongo常用的增删改查操作，[Python操作MongoDB看这一篇就够了](https://juejin.im/post/5addbd0e518825671f2f62ee)
 
 最近在整理一些在pymongo中相对使用较少的查询。
 
